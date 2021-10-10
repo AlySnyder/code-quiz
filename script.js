@@ -1,3 +1,4 @@
+// my variable for questions and answers
 var questions = [
     {
         "question": "Which of these are not considered a primitive type of Javascript?",
@@ -34,7 +35,7 @@ var questionBlock = document.getElementById("questionBlock")
 var currentQuestionIndex = 0;
 
 
-
+// answer buttons true and false 
 var startQuizButton = document.getElementById("start-quiz")
 var questionText = document.getElementById("question")
 var answerButton1 = document.getElementById("answer1")
@@ -98,17 +99,10 @@ startQuizButton.onclick = startQuiz;
 function startQuiz() {
     startQuizButton.style.display = "none"
     console.log(startQuizButton)
-    // var questionIsTrue = document.getElementById("answer1" , "isCorrect" , "false")
-    // console.log(questionIsTrue)
-    // questionIsTrue.onclick = function() {
-    //     if (questionIsTrue = questionIsTrue)
-    //     subtractTime()
-    // }
+
 
     //answer button 1 set attribute , button 2 ,3,4 etc, set value to true or false.
-    // when clicked answer is processed and stored ( collect info)
-    // play sound when wrong answer
-    //
+    
     document.getElementById("time-remaining").innerText = timeLeft;
     startTimer();
     currentQuestionIndex = 0;
@@ -147,6 +141,7 @@ function finish() {
     alert("Game Over!");
     document.getElementById("questionBlock").style.display = "none"
     document.getElementById("scoreInputContainer").style.display = "block"
+    document.getElementById("finalScoreText").innerHTML += timeLeft
 }
 
 var submitButton = document.getElementById("submitButton")
@@ -165,11 +160,5 @@ submitButton.onclick = function() {
     scores.push(newScore);
     localStorage.setItem("highscores", JSON.stringify(scores));
 
-    
+    window.location.replace("high-score.html")
 }
-
-
-
-
-// JSON.parse(jsonString) -> object
-// JSON.stringify(object) -> string
