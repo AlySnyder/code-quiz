@@ -70,9 +70,11 @@ function chooseAnswer(answer) {
     if (answer.isCorrect) {
         window.alert("Correct!")
         timeLeft += 5
+        document.getElementById("time-remaining").innerText = timeLeft;
     } else {
         window.alert("Wrong Answer!")
         timeLeft -= 5
+        document.getElementById("time-remaining").innerText = timeLeft;
     }
 }
 
@@ -141,7 +143,33 @@ function startTimer() {
 
 
 function finish() {
-    clearInterval(timer)
+    clearInterval(timer);
     alert("Game Over!");
+    document.getElementById("questionBlock").style.display = "none"
+    document.getElementById("scoreInputContainer").style.display = "block"
 }
 
+var submitButton = document.getElementById("submitButton")
+submitButton.onclick = function() {
+    var scores = JSON.parse(localStorage.getItem("highscores"));
+    if (!scores) {
+        scores = []
+    }
+
+    var initialsInput = document.getElementById("initialsInput");
+    var newScore = {
+        score: timeLeft,
+        name: initialsInput.value
+    };
+
+    scores.push(newScore);
+    localStorage.setItem("highscores", JSON.stringify(scores));
+
+    
+}
+
+
+
+
+// JSON.parse(jsonString) -> object
+// JSON.stringify(object) -> string
